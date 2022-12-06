@@ -1,20 +1,20 @@
 
 class Quote {
   Quote({
-    required this.q,
-    required this.a,
+    required this.text,
+    required this.author,
   });
 
-  String q;
-  String a;
+  String text;
+  String? author;
 
   factory Quote.fromJson(Map<String, dynamic> json) => Quote(
-    q: json["q"],
-    a: json["a"],
+    text: json["text"],
+    author: json["author"],
   );
 
   Map<String, dynamic> toJson() => {
-    "q": q,
-    "a": a,
+    "text": text,
+    "author": author,
   };
 }

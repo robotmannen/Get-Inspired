@@ -7,10 +7,10 @@ class RemoteService {
 
   String quoteToJson(List<Quote> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-  Future<List<Quote>?> fetchQuotes({required String endpoint}) async {
+  Future<List<Quote>?> fetchQuotes() async {
     var client = http.Client();
 
-    var baseUri = Uri.parse('https://zenquotes.io/api$endpoint');
+    var baseUri = Uri.parse('https://type.fit/api/quotes');
 
     var response = await client.get(baseUri);
     if (response.statusCode == 200) {
