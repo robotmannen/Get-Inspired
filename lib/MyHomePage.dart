@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_inspired/QuoteSlide.dart';
+import 'package:get_inspired/TitleWidget.dart';
 import 'FavouritesPage.dart';
 import 'Quote.dart';
 import 'RemoteService.dart';
@@ -40,19 +41,23 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const FavouritesPage()),
+              context,
+              MaterialPageRoute(builder: (context) => const FavouritesPage()),
             );
-          }, child: const Icon(Icons.favorite)),
-      body: PageView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: quotes?.length,
-        itemBuilder: (context, index) {
-          return QuoteSlide(
-            quote: quotes?[index] ?? Quote(text: "", author: ""),
-          );
-        },
-      ),
+          },
+          child: const Icon(Icons.favorite)),
+      body: Stack(children: [
+        PageView.builder(
+          scrollDirection: Axis.vertical,
+          itemCount: quotes?.length,
+          itemBuilder: (context, index) {
+            return QuoteSlide(
+              quote: quotes?[index] ?? Quote(text: "", author: ""),
+            );
+          },
+        ),
+        SafeArea(child: const TitleWidget())
+      ]),
     );
   }
 }
