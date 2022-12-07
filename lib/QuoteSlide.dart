@@ -4,11 +4,13 @@ import 'dart:math' as math;
 
 class QuoteSlide extends StatefulWidget {
   final Quote quote;
+  final Function(Quote) onFavouriteSelected;
 
   final Color randomColor =
       Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
 
-  QuoteSlide({super.key, required this.quote});
+  QuoteSlide(
+      {super.key, required this.quote, required this.onFavouriteSelected});
 
   @override
   State<QuoteSlide> createState() => _QuoteSlideState();
@@ -37,7 +39,7 @@ class _QuoteSlideState extends State<QuoteSlide> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${widget.quote.text}\n",
+                      "\"${widget.quote.text}\"\n",
                       style:
                           const TextStyle(color: Colors.black, fontSize: 20.0),
                     ),
@@ -51,9 +53,13 @@ class _QuoteSlideState extends State<QuoteSlide> {
                             fontSize: 15.0,
                           ),
                         ),
-                        IconButton(onPressed: () {
-
-                        }, icon: const Icon(Icons.favorite_border, size: 25.0,))
+                        IconButton(
+                            onPressed: () =>
+                                widget.onFavouriteSelected(widget.quote),
+                            icon: const Icon(
+                              Icons.favorite_border,
+                              size: 25.0,
+                            )),
                       ],
                     ),
                   ],

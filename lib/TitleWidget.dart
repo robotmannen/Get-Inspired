@@ -9,7 +9,7 @@ class TitleWidget extends StatelessWidget {
       alignment: AlignmentDirectional.topCenter,
       child: Padding(
         padding: const EdgeInsets.only(top: 20.0),
-        child: Container(
+        child: Container( 
           decoration: const BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.white,

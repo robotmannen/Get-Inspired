@@ -16,22 +16,31 @@ class _MyHomePageState extends State<MyHomePage> {
   final PageController controller = PageController();
 
   List<Quote>? quotes;
-  Quote? currentQuote;
+  List<Quote> favouriteQuotes = [];
   bool isLoaded = false;
 
   @override
   void initState() {
     super.initState();
-    getQuotes();
+    _getQuotes();
   }
 
-  getQuotes() async {
+  _getQuotes() async {
     quotes = await RemoteService().fetchQuotes();
     quotes?.shuffle();
     if (quotes != null) {
       setState(() {
         isLoaded = true;
       });
+    }
+  }
+
+  _addQuoteToFavourites(Quote quote) {
+    var result = favouriteQuotes.where((element) =>
+        element.text == quote.text && element.author == quote.author);
+
+    if (result.isEmpty) {
+      favouriteQuotes.add(quote);
     }
   }
 
@@ -42,7 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const FavouritesPage()),
+              MaterialPageRoute(
+                  builder: (context) => FavouritesPage(
+                        favouriteQuotes: favouriteQuotes,
+                      )),
             );
           },
           child: const Icon(Icons.favorite)),
@@ -53,10 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
           itemBuilder: (context, index) {
             return QuoteSlide(
               quote: quotes?[index] ?? Quote(text: "", author: ""),
+              onFavouriteSelected: (Quote quote) =>
+                  _addQuoteToFavourites(quote),
             );
           },
         ),
-        SafeArea(child: const TitleWidget())
+        const SafeArea(child: TitleWidget())
       ]),
     );
   }
