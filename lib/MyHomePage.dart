@@ -1,6 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get_inspired/QuoteSlide.dart';
+import 'FavouritesPage.dart';
 import 'Quote.dart';
 import 'RemoteService.dart';
 
@@ -16,7 +16,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Quote>? quotes;
   Quote? currentQuote;
-
   bool isLoaded = false;
 
   @override
@@ -37,14 +36,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: quotes?.length,
-      itemBuilder: (context, index) {
-        return QuoteSlide(
-          quote: quotes?[index] ?? Quote(text: "", author: ""),
-        );
-      },
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FavouritesPage()),
+            );
+          }, child: const Icon(Icons.favorite)),
+      body: PageView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: quotes?.length,
+        itemBuilder: (context, index) {
+          return QuoteSlide(
+            quote: quotes?[index] ?? Quote(text: "", author: ""),
+          );
+        },
+      ),
     );
   }
 }
