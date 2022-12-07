@@ -12,7 +12,7 @@ class TitleWidget extends StatelessWidget {
         child: Container( 
           decoration: const BoxDecoration(
               shape: BoxShape.rectangle,
-              color: Colors.white,
+              color: Colors.greenAccent,
               borderRadius: BorderRadius.all(Radius.circular(15.0))),
           child: const Padding(
             padding: EdgeInsets.all(15.0),
@@ -21,6 +21,7 @@ class TitleWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 40.0,
                 fontWeight: FontWeight.bold,
+                color: Colors.pinkAccent
               ),
             ),
           ),

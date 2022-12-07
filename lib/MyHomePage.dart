@@ -44,10 +44,31 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  var counter = 0;
+
+  Color _getSlideColor() {
+    final List<Color> slideColors = [
+      Colors.pink,
+      Colors.green,
+      Colors.orange,
+      Colors.red,
+      Colors.amber,
+      Colors.cyan
+    ];
+
+    if (counter == 5) {
+      counter = 0;
+    } else {
+      counter++;
+    }
+    return slideColors[counter];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.greenAccent,
           onPressed: () {
             Navigator.push(
               context,
@@ -57,13 +78,17 @@ class _MyHomePageState extends State<MyHomePage> {
                       )),
             );
           },
-          child: const Icon(Icons.favorite)),
+          child: const Icon(
+            Icons.favorite,
+            color: Colors.pinkAccent,
+          )),
       body: Stack(children: [
         PageView.builder(
           scrollDirection: Axis.vertical,
           itemCount: quotes?.length,
           itemBuilder: (context, index) {
             return QuoteSlide(
+              slideColor: _getSlideColor(),
               quote: quotes?[index] ?? Quote(text: "", author: ""),
               onFavouriteSelected: (Quote quote) =>
                   _addQuoteToFavourites(quote),

@@ -5,12 +5,16 @@ import 'dart:math' as math;
 class QuoteSlide extends StatefulWidget {
   final Quote quote;
   final Function(Quote) onFavouriteSelected;
+  final Color slideColor;
 
   final Color randomColor =
       Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
 
   QuoteSlide(
-      {super.key, required this.quote, required this.onFavouriteSelected});
+      {super.key,
+      required this.quote,
+      required this.onFavouriteSelected,
+      required this.slideColor});
 
   @override
   State<QuoteSlide> createState() => _QuoteSlideState();
@@ -20,7 +24,7 @@ class _QuoteSlideState extends State<QuoteSlide> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.randomColor,
+      color: widget.slideColor,
       child: Visibility(
         visible: widget.quote.text.isNotEmpty,
         replacement: const LinearProgressIndicator(),
