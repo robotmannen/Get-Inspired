@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:get_inspired/Quote.dart';
+import 'package:get_inspired/model/Quote.dart';
 
 class RemoteService {
   List<Quote> quoteFromJson(String str) => List<Quote>.from(json.decode(str).map((x) => Quote.fromJson(x)));

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'Quote.dart';
-import 'dart:math' as math;
+import 'globals.dart';
+import 'model/Quote.dart';
 
 class QuoteSlide extends StatefulWidget {
   final Quote quote;
   final Function(Quote) onFavouriteSelected;
   final Color slideColor;
 
-  final Color randomColor =
-      Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
-
-  QuoteSlide(
+  const QuoteSlide(
       {super.key,
       required this.quote,
       required this.onFavouriteSelected,
@@ -58,10 +55,15 @@ class _QuoteSlideState extends State<QuoteSlide> {
                           ),
                         ),
                         IconButton(
-                            onPressed: () =>
-                                widget.onFavouriteSelected(widget.quote),
-                            icon: const Icon(
-                              Icons.favorite_border,
+                            onPressed: () {
+                              setState(() {
+                                widget.onFavouriteSelected(widget.quote);
+                              });
+                            },
+                            icon: Icon(
+                              favouriteQuotes.contains(widget.quote)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
                               size: 25.0,
                             )),
                       ],

@@ -1,4 +1,3 @@
-
 class Quote {
   Quote({
     required this.text,
