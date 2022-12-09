@@ -23,7 +23,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+
     _getQuotes();
+    sharedPrefs();
   }
 
   _getQuotes() async {
@@ -48,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
       globals.favouriteQuotes
           .removeWhere((element) => element.text == quote.text);
     }
+    globals.sharedPrefs();
   }
 
   var counter = 0;
@@ -79,9 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => FavouritesPage()),
-            ).then((value) => { setState(() {
-            }) });
+              MaterialPageRoute(builder: (context) => const FavouritesPage()),
+            ).then((value) => {
+                  setState(() {
+                    counter--;
+                    globals.sharedPrefs();
+                  })
+                });
           },
           child: const Icon(
             Icons.favorite,
@@ -95,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return QuoteSlide(
               slideColor: _getSlideColor(),
               quote: quotes?[index] ?? Quote(text: "", author: ""),
-              onFavouriteSelected: (Quote quote) =>
+              handleFavouriteSelection: (Quote quote) =>
                   _handleFavouriteButton(quote),
             );
           },

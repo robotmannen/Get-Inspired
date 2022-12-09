@@ -4,13 +4,13 @@ import 'model/Quote.dart';
 
 class QuoteSlide extends StatefulWidget {
   final Quote quote;
-  final Function(Quote) onFavouriteSelected;
+  final Function(Quote) handleFavouriteSelection;
   final Color slideColor;
 
   const QuoteSlide(
       {super.key,
       required this.quote,
-      required this.onFavouriteSelected,
+      required this.handleFavouriteSelection,
       required this.slideColor});
 
   @override
@@ -57,7 +57,8 @@ class _QuoteSlideState extends State<QuoteSlide> {
                         IconButton(
                             onPressed: () {
                               setState(() {
-                                widget.onFavouriteSelected(widget.quote);
+                                widget.handleFavouriteSelection(widget.quote);
+
                               });
                             },
                             icon: Icon(
