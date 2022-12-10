@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     _getQuotes();
-    sharedPrefs();
+    globals.loadPrefs();
   }
 
   _getQuotes() async {
@@ -50,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
       globals.favouriteQuotes
           .removeWhere((element) => element.text == quote.text);
     }
-    globals.sharedPrefs();
+    globals.setPrefs();
   }
 
-  var counter = 0;
+  var counterColor = 0;
 
   Color _getSlideColor() {
     final List<Color> slideColors = [
@@ -65,12 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
       Colors.cyan
     ];
 
-    if (counter == 5) {
-      counter = 0;
+    if (counterColor == 5) {
+      counterColor = 0;
     } else {
-      counter++;
+      counterColor++;
     }
-    return slideColors[counter];
+    return slideColors[counterColor];
   }
 
   @override
@@ -85,8 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
               MaterialPageRoute(builder: (context) => const FavouritesPage()),
             ).then((value) => {
                   setState(() {
-                    counter--;
-                    globals.sharedPrefs();
+                    counterColor--;
+                    globals.setPrefs();
                   })
                 });
           },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_inspired/FullscreenFavouriteQuote.dart';
 import 'package:get_inspired/globals.dart' as globals;
 
 class FavouritesPage extends StatefulWidget {
@@ -76,7 +77,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
                             onDismissed: (direction) {
                               setState(() {
                                 globals.favouriteQuotes.removeAt(index);
-                                globals.sharedPrefs();
+                                globals.setPrefs();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text('Removed from favourites'),
@@ -84,36 +85,50 @@ class _FavouritesPageState extends State<FavouritesPage> {
                                 );
                               });
                             },
-                            child: Container(
-                              padding: const EdgeInsets.all(15.0),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10.0),
-                                ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      "\"${globals.favouriteQuotes[index].text}\"",
-                                      style: const TextStyle(
-                                          color: Colors.black, fontSize: 20.0),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 4),
-                                  Text(
-                                    "\n-${globals.favouriteQuotes[index].author ?? "unknown"}",
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12.0,
-                                    ),
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        FullscreenFavouriteQuote(
+                                            quote:
+                                                globals.favouriteQuotes[index]),
                                   ),
-                                ],
+                                );
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(15.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10.0),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "\"${globals.favouriteQuotes[index].text}\"",
+                                        style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20.0),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 4),
+                                    Text(
+                                      "\n-${globals.favouriteQuotes[index].author ?? "unknown"}",
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12.0,
+                                      ),
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           );
