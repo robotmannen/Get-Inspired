@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'MyHomePage.dart';
+import 'MainPage.dart';
 import 'package:flutter/services.dart';
 
 void main() {
@@ -7,19 +7,19 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
-  ]).then((value) => runApp(const MyApp()));
-  runApp(const MyApp());
+  ]).then((value) => runApp(const GetInspiredApp()));
+  runApp(const GetInspiredApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class GetInspiredApp extends StatelessWidget {
+  const GetInspiredApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Get Inspired',
-      home: MyHomePage(),
+      home: MainPage(),
     );
   }
 }

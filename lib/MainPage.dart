@@ -7,14 +7,14 @@ import 'model/Quote.dart';
 import 'network/RemoteService.dart';
 import 'globals.dart' as globals;
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainPageState extends State<MainPage> {
   final PageController controller = PageController();
 
   List<Quote>? quotes;
@@ -77,6 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.greenAccent,
+
+      // FAB onPress navigates to favourites page
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.greenAccent,
           onPressed: () {
@@ -95,6 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.pinkAccent,
           )),
       body: Stack(children: [
+
+        // enerates a new page for new quote
         PageView.builder(
           scrollDirection: Axis.vertical,
           itemCount: quotes?.length,

@@ -48,6 +48,9 @@ class _FavouritesPageState extends State<FavouritesPage> {
                               fontWeight: FontWeight.bold, fontSize: 20.0),
                         ),
                       )
+
+                    // Generates a white box for every favourite quote in list,
+                    // easily dismissible by swiping it to the left
                     : GridView.builder(
                         itemCount: globals.favouriteQuotes.length,
                         gridDelegate:
@@ -75,6 +78,8 @@ class _FavouritesPageState extends State<FavouritesPage> {
                               )
                             ]),
                             onDismissed: (direction) {
+
+                              // Removes favourite quote from favourites-list
                               setState(() {
                                 globals.favouriteQuotes.removeAt(index);
                                 globals.setPrefs();

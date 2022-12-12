@@ -54,6 +54,8 @@ class _QuoteSlideState extends State<QuoteSlide> {
                             fontSize: 15.0,
                           ),
                         ),
+
+                        // Button add current quote to favourites list
                         IconButton(
                             onPressed: () {
                               setState(() {
