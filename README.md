@@ -1,4 +1,4 @@
-# get_inspired
+# Get Inspired
 
 Get inspiring quotes with this app
 
