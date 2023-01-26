@@ -21,7 +21,7 @@ class Quote {
 
   static Map<String, String?> toMap(Quote quote) => {
     'text': quote.text,
-    'rating': quote.author,
+    'author': quote.author,
 
   };
 

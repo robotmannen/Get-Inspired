@@ -19,6 +19,7 @@ class _MainPageState extends State<MainPage> {
 
   List<Quote>? quotes;
   bool isLoaded = false;
+  var counterColor = 0;
 
   @override
   void initState() {
@@ -52,8 +53,6 @@ class _MainPageState extends State<MainPage> {
     }
     globals.setPrefs();
   }
-
-  var counterColor = 0;
 
   Color _getSlideColor() {
     final List<Color> slideColors = [
@@ -97,7 +96,6 @@ class _MainPageState extends State<MainPage> {
             color: Colors.pinkAccent,
           )),
       body: Stack(children: [
-
         // enerates a new page for new quote
         PageView.builder(
           scrollDirection: Axis.vertical,

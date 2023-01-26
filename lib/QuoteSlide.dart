@@ -60,7 +60,6 @@ class _QuoteSlideState extends State<QuoteSlide> {
                             onPressed: () {
                               setState(() {
                                 widget.handleFavouriteSelection(widget.quote);
-
                               });
                             },
                             icon: Icon(
